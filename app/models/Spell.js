@@ -19,7 +19,10 @@ export class Spell {
   get detailsHTMLTemplate() {
     return `
     <div class="p-3">
-      <h1>${this.name}</h1>
+      <div class="d-flex justify-content-between align-items-center">
+        <h1>${this.name}</h1>
+        <button onclick="app.SandboxSpellsController.saveSpell()" class="btn btn-outline-info">Save Spell</button>
+      </div>
       <h2>Level ${this.level} ${this.damage} Spell</h2>
       <p>Cast time of ${this.castingTime} with a range of ${this.range} with a duration of ${this.duration}</p>
       <p>This ${this.ritual ? '<i>is</i> a' : 'is not a'} ritual spell${this.material ? ' that will require ' + this.material.toLowerCase() : ''}${this.concentration ? ' and you must concentrate while performing' : ''}</p>
