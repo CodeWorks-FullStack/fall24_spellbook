@@ -36,6 +36,15 @@ export class SandboxSpellsController {
     }
   }
 
+  async prepareSpell(spellId) {
+    try {
+      await sandboxSpellsService.prepareSpell(spellId)
+    } catch (error) {
+      Pop.error(error)
+      console.error(error)
+    }
+  }
+
   setActiveSpell(spellId) {
     sandboxSpellsService.setActiveSpell(spellId)
   }

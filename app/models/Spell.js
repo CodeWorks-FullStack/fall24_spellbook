@@ -36,9 +36,10 @@ export class Spell {
   }
 
   get mySpellListItemHTMLTemplate() {
-    return `
-    <div class="my-1">
-        <button onclick="app.SandboxSpellsController.setActiveSpell('${this.id}')" class="btn btn-info w-100 rounded-pill">
+    return /*html*/`
+    <div class="my-1 d-flex">
+        <input onchange="app.SandboxSpellsController.prepareSpell('${this.id}')" type="checkbox">
+        <button onclick="app.SandboxSpellsController.setActiveSpell('${this.id}')" class="btn btn-info flex-grow-1 rounded-pill">
           ${this.name}
         </button>
       </div>

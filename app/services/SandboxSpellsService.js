@@ -3,6 +3,12 @@ import { Spell } from "../models/Spell.js";
 import { api } from "./AxiosService.js"
 
 class SandboxSpellsService {
+  async prepareSpell(spellId) {
+    const spellData = { prepared: true }
+    const response = await api.put(`api/spells/${spellId}`, spellData)
+    console.log('UPDATED SPELL ✅🔮🧙‍♂️', response.data);
+
+  }
   setActiveSpell(spellId) {
     const foundSpell = AppState.sandboxSpells.find(spell => spell.id == spellId)
     AppState.activeSpell = foundSpell
