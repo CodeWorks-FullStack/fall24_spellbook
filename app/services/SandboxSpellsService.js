@@ -4,7 +4,10 @@ import { api } from "./AxiosService.js"
 
 class SandboxSpellsService {
   async prepareSpell(spellId) {
-    const spellData = { prepared: true }
+    const spell = AppState.sandboxSpells.find(spell => spell.id == spellId)
+
+    const spellData = { prepared: !spell.prepared }
+
     const response = await api.put(`api/spells/${spellId}`, spellData)
     console.log('UPDATED SPELL ✅🔮🧙‍♂️', response.data);
 

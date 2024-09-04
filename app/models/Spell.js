@@ -17,6 +17,7 @@ export class Spell {
     this.castingTime = data.casting_time
     this.duration = data.duration
     this.components = data.components
+    this.prepared = data.prepared || false
   }
 
   get detailsHTMLTemplate() {
@@ -36,9 +37,9 @@ export class Spell {
   }
 
   get mySpellListItemHTMLTemplate() {
-    return /*html*/`
+    return `
     <div class="my-1 d-flex">
-        <input onchange="app.SandboxSpellsController.prepareSpell('${this.id}')" type="checkbox">
+        <input onchange="app.SandboxSpellsController.prepareSpell('${this.id}')" type="checkbox" ${this.prepared ? 'checked' : ''}>
         <button onclick="app.SandboxSpellsController.setActiveSpell('${this.id}')" class="btn btn-info flex-grow-1 rounded-pill">
           ${this.name}
         </button>
