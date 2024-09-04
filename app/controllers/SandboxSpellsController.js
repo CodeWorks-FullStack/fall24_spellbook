@@ -16,6 +16,10 @@ export class SandboxSpellsController {
     let spellsHTML = ''
     spells.forEach(spell => spellsHTML += spell.mySpellListItemHTMLTemplate)
     setHTML('my-spells-list', spellsHTML)
+
+    // const preparedSpells = spells.filter(spell => spell.prepared == true)
+    const preparedSpells = spells.filter(spell => spell.prepared)
+    setHTML('spell-count', `${preparedSpells.length}/${spells.length}`)
   }
 
   async saveSpell() {
