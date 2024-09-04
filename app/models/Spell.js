@@ -14,6 +14,23 @@ export class Spell {
     this.duration = data.duration
     this.components = data.components
   }
+
+  get detailsHTMLTemplate() {
+    return `
+    <div class="p-3">
+      <h1>${this.name}</h1>
+      <h2>Level 3 Acid Spell</h2>
+      <p>Cast time of 3 minutes with a range of 30 feet with a duration of 2 years</p>
+      <p>This is a ritual spell that will require acid and an arrow and you must concentrate while performing</p>
+      <p>Components: <span>V</span><span>S</span><span>M</span></p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus expedita, perspiciatis, quas
+        blanditiis voluptatibus possimus inventore hic sapiente ex ipsum molestias consequuntur. Reprehenderit
+        alias autem, dolorum, blanditiis iusto sit laudantium accusantium doloribus velit explicabo numquam fugiat
+        atque, rem ipsum facilis. Voluptas, error dolor. Consequatur ducimus quaerat magnam magni eius fugiat.</p>
+    </div>
+    `
+  }
+
 }
 
 const spellData = {
