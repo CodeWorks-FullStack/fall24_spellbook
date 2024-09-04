@@ -2,8 +2,9 @@ import { AppState } from "../AppState.js";
 import { dndAPI } from "./AxiosService.js"
 
 class DNDSpellsService {
-  getSpellByIndex(spellIndex) {
-    console.log('spell index!', spellIndex);
+  async getSpellByIndex(spellIndex) {
+    const response = await dndAPI.get(`api/spells/${spellIndex}`)
+    console.log('GOT SPELL DETAILS 🧙‍♂️📖🔮', response.data);
   }
   async getDNDSpells() {
     const response = await dndAPI.get('api/spells')
