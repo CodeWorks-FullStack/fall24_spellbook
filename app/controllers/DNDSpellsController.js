@@ -7,14 +7,13 @@ export class DNDSpellsController {
 
   constructor() {
     AppState.on('dndSpells', this.drawDNDSpellsList)
+    AppState.on('activeSpell', this.drawActiveSpell)
 
     this.getDNDSpells()
   }
 
   //#region drawing
   drawDNDSpellsList() {
-    console.log('did i run?');
-
     const spells = AppState.dndSpells
     let spellHTML = ''
     spells.forEach(spell => {
@@ -26,6 +25,10 @@ export class DNDSpellsController {
           </div>`
     })
     setHTML('dnd-spells-list', spellHTML)
+  }
+
+  drawActiveSpell() {
+    setHTML('spell-details', AppState.activeSpell.detailsHTMLTemplate)
   }
   //#endregion
 

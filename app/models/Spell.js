@@ -3,8 +3,9 @@ export class Spell {
     this.index = data.index
     this.name = data.name
     this.description = data.desc
-    // FIXME this is gonna break
-    this.damage = data.damage.damage_type.name
+    // FIXME this is gonna break.... it might still break later
+    // this.damage = data.damage == undefined ? data.damage.damage_type.name : ''
+    this.damage = data.damage?.damage_type.name || ''
     this.level = data.level
     this.range = data.range
     this.material = data.material
@@ -19,7 +20,7 @@ export class Spell {
     return `
     <div class="p-3">
       <h1>${this.name}</h1>
-      <h2>Level 3 Acid Spell</h2>
+      <h2>Level ${this.level} ${this.damage} Spell</h2>
       <p>Cast time of 3 minutes with a range of 30 feet with a duration of 2 years</p>
       <p>This is a ritual spell that will require acid and an arrow and you must concentrate while performing</p>
       <p>Components: <span>V</span><span>S</span><span>M</span></p>
