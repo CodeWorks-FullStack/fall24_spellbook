@@ -1,11 +1,12 @@
 export class Spell {
   constructor(data) {
+    debugger
     this.index = data.index
     this.name = data.name
-    this.description = data.desc.join('<br><br>')
-    // FIXME this is gonna break.... it might still break later
+    this.description = data.description || data.desc.join('<br><br>')
     // this.damage = data.damage == undefined ? data.damage.damage_type.name : ''
-    this.damage = data.damage?.damage_type.name || ''
+    // NOTE this is gross
+    this.damage = data.damage == undefined ? '' : data.damage.damage_type == undefined ? data.damage : data.damage.damage_type
     this.level = data.level
     this.range = data.range
     this.material = data.material
