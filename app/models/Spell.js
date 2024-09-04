@@ -2,7 +2,7 @@ export class Spell {
   constructor(data) {
     this.index = data.index
     this.name = data.name
-    this.description = data.desc
+    this.description = data.desc.join('<br><br>')
     // FIXME this is gonna break.... it might still break later
     // this.damage = data.damage == undefined ? data.damage.damage_type.name : ''
     this.damage = data.damage?.damage_type.name || ''
@@ -21,17 +21,24 @@ export class Spell {
     <div class="p-3">
       <h1>${this.name}</h1>
       <h2>Level ${this.level} ${this.damage} Spell</h2>
-      <p>Cast time of 3 minutes with a range of 30 feet with a duration of 2 years</p>
-      <p>This is a ritual spell that will require acid and an arrow and you must concentrate while performing</p>
-      <p>Components: <span>V</span><span>S</span><span>M</span></p>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Necessitatibus expedita, perspiciatis, quas
-        blanditiis voluptatibus possimus inventore hic sapiente ex ipsum molestias consequuntur. Reprehenderit
-        alias autem, dolorum, blanditiis iusto sit laudantium accusantium doloribus velit explicabo numquam fugiat
-        atque, rem ipsum facilis. Voluptas, error dolor. Consequatur ducimus quaerat magnam magni eius fugiat.</p>
+      <p>Cast time of ${this.castingTime} with a range of ${this.range} with a duration of ${this.duration}</p>
+      <p>This ${this.ritual ? '<i>is</i> a' : 'is not a'} ritual spell${this.material ? ' that will require ' + this.material.toLowerCase() : ''}${this.concentration ? ' and you must concentrate while performing' : ''}</p>
+      <p>Components: ${this.componentSpans}</p>
+      <p>${this.description}</p>
     </div>
     `
   }
 
+  get componentSpans() {
+    let titles = {
+      V: 'Verbal',
+      S: 'Somatic',
+      M: 'Material'
+    }
+    let spanHTML = ''
+    this.components.forEach(component => spanHTML += `<span class="me-2" title="${titles[component]}">${component}</span>`)
+    return spanHTML
+  }
 }
 
 const spellData = {
