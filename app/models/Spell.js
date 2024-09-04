@@ -1,5 +1,6 @@
 export class Spell {
   constructor(data) {
+    this.id = data.id
     this.index = data.index
     this.name = data.name
     this.description = data.description || data.desc.join('<br><br>')
@@ -35,7 +36,7 @@ export class Spell {
   get mySpellListItemHTMLTemplate() {
     return `
     <div class="my-1">
-        <button class="btn btn-info w-100 rounded-pill">
+        <button onclick="app.SandboxSpellsController.setActiveSpell('${this.id}')" class="btn btn-info w-100 rounded-pill">
           ${this.name}
         </button>
       </div>

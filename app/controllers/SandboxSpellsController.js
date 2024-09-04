@@ -35,4 +35,8 @@ export class SandboxSpellsController {
       console.error(error)
     }
   }
+
+  setActiveSpell(spellId) {
+    sandboxSpellsService.setActiveSpell(spellId)
+  }
 }
