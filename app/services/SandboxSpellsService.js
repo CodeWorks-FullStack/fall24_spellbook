@@ -7,7 +7,7 @@ class SandboxSpellsService {
     const response = await api.get('api/spells')
     console.log('GOT MY SPELLS 🧙‍♂️🔮🔮🔮', response.data);
     const spells = response.data.map(spellData => new Spell(spellData))
-    AppState.mySpells = spells
+    AppState.sandboxSpells = spells
   }
   async saveSpell() {
     const spellToSave = AppState.activeSpell

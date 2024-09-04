@@ -32,6 +32,16 @@ export class Spell {
     `
   }
 
+  get mySpellListItemHTMLTemplate() {
+    return `
+    <div class="my-1">
+        <button class="btn btn-info w-100 rounded-pill">
+          ${this.name}
+        </button>
+      </div>
+    `
+  }
+
   get componentSpans() {
     let titles = {
       V: 'Verbal',
