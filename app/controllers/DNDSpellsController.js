@@ -13,10 +13,10 @@ export class DNDSpellsController {
     this.getDNDSpells()
   }
 
-  //#region drawing
   drawDNDSpellsList() {
     const spells = AppState.dndSpells
     let spellHTML = ''
+    // NOTE we just have POJOs stored in this array, so we build the HTML here in the controller
     spells.forEach(spell => {
       spellHTML += `
           <div class="my-1">
@@ -29,12 +29,12 @@ export class DNDSpellsController {
   }
 
   drawActiveSpell() {
+    // if there is no active spell currently
     if (AppState.activeSpell == null) return
+
     setHTML('spell-details', AppState.activeSpell.detailsHTMLTemplate)
   }
-  //#endregion
 
-  //#region network requests
   async getDNDSpells() {
     try {
       // REVIEW make sure you await your asynchronous service calls so we stay inside of the try
@@ -53,5 +53,4 @@ export class DNDSpellsController {
       console.error(error) //notify the dev
     }
   }
-  // #endregion
 }
