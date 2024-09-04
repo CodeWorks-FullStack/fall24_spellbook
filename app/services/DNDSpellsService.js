@@ -2,7 +2,7 @@ import { AppState } from "../AppState.js";
 import { dndAPI } from "./AxiosService.js"
 
 class DNDSpellsService {
-  async getSpells() {
+  async getDNDSpells() {
     const response = await dndAPI.get('api/spells')
     console.log('GOT SPELLS 🧙🧙‍♂️🪄', response.data);
     // NOTE response.data was an object : {count: 319, results: [...]}
