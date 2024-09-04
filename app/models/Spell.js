@@ -1,6 +1,5 @@
 export class Spell {
   constructor(data) {
-    debugger
     this.index = data.index
     this.name = data.name
     this.description = data.description || data.desc.join('<br><br>')
