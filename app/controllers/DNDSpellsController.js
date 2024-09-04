@@ -20,7 +20,7 @@ export class DNDSpellsController {
     spells.forEach(spell => {
       spellHTML += `
           <div class="my-1">
-            <button class="btn btn-info w-100 rounded-pill">
+            <button onclick="app.DNDSpellsController.getSpellByIndex('${spell.index}')" class="btn btn-info w-100 rounded-pill">
               ${spell.name}
             </button>
           </div>`
@@ -34,6 +34,15 @@ export class DNDSpellsController {
     try {
       // REVIEW make sure you await your asynchronous service calls so we stay inside of the try
       await dndSpellsService.getDNDSpells()
+    } catch (error) {
+      Pop.error(error) //notify the user
+      console.error(error) //notify the dev
+    }
+  }
+
+  async getSpellByIndex(spellIndex) {
+    try {
+      await dndSpellsService.getSpellByIndex(spellIndex)
     } catch (error) {
       Pop.error(error) //notify the user
       console.error(error) //notify the dev
