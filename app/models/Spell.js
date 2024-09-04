@@ -1,3 +1,5 @@
+import { AppState } from "../AppState.js"
+
 export class Spell {
   constructor(data) {
     this.id = data.id
@@ -6,10 +8,10 @@ export class Spell {
     this.description = data.description || data.desc.join('<br><br>')
     // this.damage = data.damage == undefined ? data.damage.damage_type.name : ''
     // NOTE this is gross
-    this.damage = data.damage == undefined ? '' : data.damage.damage_type == undefined ? data.damage : data.damage.damage_type
+    this.damage = data.damage == undefined ? '' : data.damage.damage_type == undefined ? data.damage : data.damage.damage_type.name
     this.level = data.level
     this.range = data.range
-    this.material = data.material
+    this.material = data.material || ''
     this.ritual = data.ritual
     this.concentration = data.concentration
     this.castingTime = data.casting_time
@@ -22,7 +24,7 @@ export class Spell {
     <div class="p-3">
       <div class="d-flex justify-content-between align-items-center">
         <h1>${this.name}</h1>
-        <button onclick="app.SandboxSpellsController.saveSpell()" class="btn btn-outline-info">Save Spell</button>
+        ${this.saveSpellButton}
       </div>
       <h2>Level ${this.level} ${this.damage} Spell</h2>
       <p>Cast time of ${this.castingTime} with a range of ${this.range} with a duration of ${this.duration}</p>
@@ -52,6 +54,18 @@ export class Spell {
     let spanHTML = ''
     this.components.forEach(component => spanHTML += `<span class="me-2" title="${titles[component]}">${component}</span>`)
     return spanHTML
+  }
+
+  get saveSpellButton() {
+    if (AppState.user == null) return ''
+
+    const foundSavedSpell = AppState.sandboxSpells.find(spell => spell.name == this.name)
+
+    if (foundSavedSpell) return ''
+
+    if (this.material.length > 100) return ''
+
+    return '<button onclick="app.SandboxSpellsController.saveSpell()" class="btn btn-outline-info">Save Spell</button>'
   }
 }
 

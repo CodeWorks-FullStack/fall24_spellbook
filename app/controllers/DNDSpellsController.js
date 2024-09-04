@@ -8,6 +8,7 @@ export class DNDSpellsController {
   constructor() {
     AppState.on('dndSpells', this.drawDNDSpellsList)
     AppState.on('activeSpell', this.drawActiveSpell)
+    AppState.on('user', this.drawActiveSpell)
 
     this.getDNDSpells()
   }
@@ -28,6 +29,7 @@ export class DNDSpellsController {
   }
 
   drawActiveSpell() {
+    if (AppState.activeSpell == null) return
     setHTML('spell-details', AppState.activeSpell.detailsHTMLTemplate)
   }
   //#endregion

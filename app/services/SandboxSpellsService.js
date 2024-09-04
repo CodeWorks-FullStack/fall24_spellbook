@@ -19,6 +19,8 @@ class SandboxSpellsService {
     console.log('SAVED SPELL 🧙‍♂️💾', response.data);
     const spell = new Spell(response.data)
     AppState.sandboxSpells.push(spell)
+
+    AppState.emit('activeSpell')
   }
 }
 
