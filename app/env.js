@@ -1,5 +1,6 @@
 export const dev = window.location.origin.includes('localhost')
-export const baseURL = dev ? 'http://localhost:3000' : ''
+// NOTE this week, your baseURL should point towards the sandbox API
+export const baseURL = 'https://sandbox.codeworksacademy.com'
 export const domain = ''
 export const audience = ''
 export const clientId = ''
