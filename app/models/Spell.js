@@ -5,9 +5,21 @@ export class Spell {
     this.id = data.id
     this.index = data.index
     this.name = data.name
+    // NOTE it's important to check the description first, or else we might still drill into undefined here
     this.description = data.description || data.desc.join('<br><br>')
+
     // this.damage = data.damage == undefined ? data.damage.damage_type.name : ''
     // NOTE this is gross
+    // if (data.damage == undefined) {
+    //   this.damage = ''
+    // }
+    // else if (data.damage.damage_type == undefined) {
+    //   this.damage = data.damage
+    // }
+    // else {
+    //   this.damage = data.damage.damage_type.name
+    // }
+    // NOTE this is also gross
     this.damage = data.damage == undefined ? '' : data.damage.damage_type == undefined ? data.damage : data.damage.damage_type.name
     this.level = data.level
     this.range = data.range
